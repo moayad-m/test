@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <style>
+        /* Previous styles remain the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.5s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #121212;
+            color: #f0f0f0;
+            overflow: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards 0.5s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .secondary-message {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            top: 0;
+        }
+
+        /* Keep all other previous styles */
+        /* ... (candle styles, animations, etc) ... */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-box initial-message">
+            <h1>For You</h1>
+            <p>I wanted to create something beautiful to tell you how special you are.</p>
+            <p style="margin-top: 1rem;">Every moment with you feels like magic.</p>
+        </div>
+
+        <div class="message-box secondary-message">
+            <p style="margin-bottom: 1rem;">This is the difference you've made in my life</p>
+            <p>You always deserve the best</p>
+            <p style="margin-top: 1rem;">Your light makes everything brighter</p>
+        </div>
+
+        <div class="candle-wrapper" onclick="lightCandle()">
+            <div class="glow"></div>
+            <div class="flame"></div>
+            <div class="wick"></div>
+            <div class="candle">
+                <div class="wax-melt"></div>
+            </div>
+            <p class="light-me">Light me</p>
+        </div>
+    </div>
+
+    <script>
+        function lightCandle() {
+            // Prevent multiple clicks
+            document.querySelector('.candle-wrapper').style.pointerEvents = 'none';
+            
+            // Light the candle
+            document.body.classList.add('light-mode');
+            document.querySelector('.flame').style.opacity = '1';
+            document.querySelector('.glow').style.opacity = '1';
+            document.querySelector('.glow').style.animation = 'glow-pulse 2s infinite';
+            document.querySelector('.light-me').style.opacity = '0';
+            
+            // Melt the wax
+            document.querySelector('.wax-melt').style.height = '10px';
+            
+            // Hide initial message and show secondary message
+            setTimeout(() => {
+                document.querySelector('.initial-message').style.opacity = '0';
+                document.querySelector('.initial-message').style.transform = 'translateY(-20px)';
+                document.querySelector('.secondary-message').style.opacity = '1';
+                document.querySelector('.secondary-message').style.transform = 'translateY(0)';
+                document.querySelector('.secondary-message').style.pointerEvents = 'all';
+            }, 800);
+            
+            // Add subtle ambient animation
+            setTimeout(() => {
+                document.querySelector('.message-box').style.boxShadow = '0 8px 32px rgba(255, 200, 150, 0.3)';
+            }, 1500);
+        }
+
+        // Initial animations
+        setTimeout(() => {
+            document.querySelector('.initial-message').style.animation = 'fadeIn 1s forwards';
+        }, 500);
+    </script>
+</body>
+</html>
